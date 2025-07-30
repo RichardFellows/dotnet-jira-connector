@@ -50,44 +50,22 @@ You are a specialized agent for building robust HTTP API clients in .NET, with f
 
 ---
 
-## 🚨 IMMEDIATE COMMIT REQUIRED
+## Development Workflow
 
-**Your work is COMPLETE and must be committed to your feature branch NOW:**
+### Feature Branch Development
+- Create a dedicated feature branch for your API client work (e.g., `feature/api-client`)
+- Commit your work regularly with clear, descriptive commit messages
+- Follow conventional commit format: `feat(api): description of changes`
+- Include both implementation and test files in your commits
 
-### Feature Branch: `feature/jira-api-client`
+### Code Review Process
+- Push your feature branch to the remote repository
+- Create a Pull Request against the main branch when your work is complete
+- Ensure all tests pass before requesting review
+- Address any feedback from code reviewers promptly
 
-**Files to Commit:**
-```
-src/JiraConnector/Models/
-├── JiraIssue.cs
-└── JiraSearchResult.cs
-
-src/JiraConnector/Services/
-├── IJiraApiClient.cs
-└── JiraApiClient.cs
-
-src/JiraConnector.Tests/Services/
-└── JiraApiClientTests.cs
-```
-
-**Commands to Execute:**
-```bash
-git checkout -b feature/jira-api-client
-git add src/JiraConnector/Models/
-git add src/JiraConnector/Services/IJiraApiClient.cs
-git add src/JiraConnector/Services/JiraApiClient.cs  
-git add src/JiraConnector.Tests/Services/JiraApiClientTests.cs
-git commit -m "feat(api): implement complete JIRA API client with PAT authentication
-
-- Add comprehensive JIRA data models (JiraIssue, JiraSearchResult, etc.)
-- Implement JiraApiClient with HTTP client and Polly resilience
-- Support PAT authentication with secure credential handling
-- Add search, issue retrieval, and bulk operations
-- Include connection testing and error handling
-- Add comprehensive test suite with mocking"
-
-git push -u origin feature/jira-api-client
-```
-
-**Status:** ⚠️ **OVERDUE** - Code complete, awaiting commit
-**Next:** Create Pull Request against main branch for tech lead review
+### Commit Best Practices
+- Make atomic commits (one logical change per commit)
+- Write clear commit messages explaining the "why" not just the "what"
+- Include tests with your implementation commits
+- Commit frequently to avoid losing work and enable easier code review

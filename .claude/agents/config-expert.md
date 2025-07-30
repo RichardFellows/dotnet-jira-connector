@@ -91,40 +91,22 @@ You are a specialized agent for designing and implementing configuration managem
 
 ---
 
-## 🚨 IMMEDIATE COMMIT REQUIRED
+## Development Workflow
 
-**Your work is COMPLETE and must be committed to your feature branch NOW:**
+### Feature Branch Development
+- Create a dedicated feature branch for your configuration work (e.g., `feature/configuration-system`)
+- Commit your work regularly with clear, descriptive commit messages
+- Follow conventional commit format: `feat(config): description of changes`
+- Include both implementation and test files in your commits
 
-### Feature Branch: `feature/configuration-management`
+### Code Review Process
+- Push your feature branch to the remote repository
+- Create a Pull Request against the main branch when your work is complete
+- Ensure all tests pass before requesting review
+- Address any feedback from code reviewers promptly
 
-**Files to Commit:**
-```
-src/JiraConnector/Configuration/
-├── JiraConfiguration.cs
-├── DatabaseConfiguration.cs  
-├── SyncConfiguration.cs
-└── AppConfiguration.cs
-
-src/JiraConnector.Tests/Configuration/
-├── JiraConfigurationTests.cs
-└── AppConfigurationTests.cs
-```
-
-**Commands to Execute:**
-```bash
-git checkout -b feature/configuration-management
-git add src/JiraConnector/Configuration/
-git add src/JiraConnector.Tests/Configuration/
-git commit -m "feat(config): implement complete configuration system with validation
-
-- Add JiraConfiguration with PAT authentication settings
-- Add DatabaseConfiguration for DuckDB connection
-- Add SyncConfiguration for data sync parameters  
-- Add AppConfiguration with validation pipeline
-- Include comprehensive test coverage (100%)"
-
-git push -u origin feature/configuration-management
-```
-
-**Status:** ⚠️ **OVERDUE** - Code complete, awaiting commit
-**Next:** Create Pull Request against main branch for tech lead review
+### Commit Best Practices
+- Make atomic commits (one logical change per commit)
+- Write clear commit messages explaining the "why" not just the "what"
+- Include tests with your implementation commits
+- Commit frequently to avoid losing work and enable easier code review

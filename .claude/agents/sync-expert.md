@@ -77,38 +77,22 @@ You are a specialized agent for designing and implementing data synchronization 
 
 ---
 
-## 🚨 IMMEDIATE COMMIT REQUIRED
+## Development Workflow
 
-**Your work is COMPLETE and must be committed to your feature branch NOW:**
+### Feature Branch Development
+- Create a dedicated feature branch for your synchronization work (e.g., `feature/data-sync`)
+- Commit your work regularly with clear, descriptive commit messages
+- Follow conventional commit format: `feat(sync): description of changes`
+- Include both implementation and test files in your commits
 
-### Feature Branch: `feature/data-synchronization`
+### Code Review Process
+- Push your feature branch to the remote repository
+- Create a Pull Request against the main branch when your work is complete
+- Ensure all tests pass before requesting review
+- Address any feedback from code reviewers promptly
 
-**Files to Commit:**
-```
-src/JiraConnector/Services/
-├── ISyncService.cs
-└── SyncService.cs
-
-src/JiraConnector.Tests/Services/
-└── SyncServiceTests.cs
-```
-
-**Commands to Execute:**
-```bash
-git checkout -b feature/data-synchronization  
-git add src/JiraConnector/Services/ISyncService.cs
-git add src/JiraConnector/Services/SyncService.cs
-git add src/JiraConnector.Tests/Services/SyncServiceTests.cs
-git commit -m "feat(sync): implement incremental data synchronization engine
-
-- Add ISyncService interface with full/incremental sync operations
-- Implement SyncService with batch processing and error recovery
-- Support connection testing and sync status monitoring
-- Handle incremental updates with lookback and change detection
-- Include comprehensive test coverage for all sync scenarios"
-
-git push -u origin feature/data-synchronization
-```
-
-**Status:** ⚠️ **OVERDUE** - Code complete, awaiting commit
-**Next:** Create Pull Request against main branch for tech lead review
+### Commit Best Practices
+- Make atomic commits (one logical change per commit)
+- Write clear commit messages explaining the "why" not just the "what"
+- Include tests with your implementation commits
+- Commit frequently to avoid losing work and enable easier code review

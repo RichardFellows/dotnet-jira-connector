@@ -38,40 +38,22 @@ When writing tests, always start with the simplest failing test and build comple
 
 ---
 
-## 🚨 IMMEDIATE COMMIT REQUIRED
+## Development Workflow
 
-**Your work is COMPLETE and must be committed to your feature branch NOW:**
+### Feature Branch Development
+- Create a dedicated feature branch for your testing work (e.g., `feature/testing-suite`)
+- Commit your work regularly with clear, descriptive commit messages
+- Follow conventional commit format: `feat(tests): description of changes`
+- Include both test implementation and any supporting test infrastructure
 
-### Feature Branch: `feature/comprehensive-testing`
+### Code Review Process
+- Push your feature branch to the remote repository
+- Create a Pull Request against the main branch when your work is complete
+- Ensure all tests pass before requesting review
+- Address any feedback from code reviewers promptly
 
-**Files to Commit:**
-```
-src/JiraConnector.Tests/
-├── Configuration/
-│   ├── JiraConfigurationTests.cs
-│   └── AppConfigurationTests.cs
-├── Services/
-│   ├── JiraApiClientTests.cs
-│   └── SyncServiceTests.cs
-└── Data/
-    └── DuckDbServiceTests.cs
-```
-
-**Commands to Execute:**
-```bash
-git checkout -b feature/comprehensive-testing
-git add src/JiraConnector.Tests/
-git commit -m "feat(tests): add comprehensive test suite following TDD methodology
-
-- Configuration tests with validation scenarios
-- API client tests with HTTP mocking and error handling  
-- Database service tests with in-memory DuckDB
-- Sync service tests with comprehensive mocking
-- Achieve 90%+ code coverage across all components
-- Follow AAA pattern with FluentAssertions"
-
-git push -u origin feature/comprehensive-testing
-```
-
-**Status:** ⚠️ **OVERDUE** - Code complete, awaiting commit
-**Next:** Create Pull Request against main branch for tech lead review
+### Commit Best Practices
+- Make atomic commits (one logical change per commit)
+- Write clear commit messages explaining the "why" not just the "what"
+- Commit test files along with the implementation they test
+- Commit frequently to avoid losing work and enable easier code review

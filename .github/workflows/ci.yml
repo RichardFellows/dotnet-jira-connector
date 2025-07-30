@@ -6,6 +6,11 @@ on:
   pull_request:
     branches: [ main, master ]
 
+permissions:
+  contents: read
+  checks: write
+  pull-requests: write
+
 jobs:
   test-and-build:
     runs-on: ubuntu-latest
@@ -47,6 +52,7 @@ jobs:
           --no-build \
           --verbosity normal \
           --filter "FullyQualifiedName!~DuckDbService" \
+          --logger "trx;LogFileName=test-results.trx" \
           --collect:"XPlat Code Coverage" \
           --results-directory ./coverage
       
@@ -70,8 +76,9 @@ jobs:
       if: success() || failure()
       with:
         name: .NET Tests
-        path: '**/*.trx'
+        path: '**/test-results.trx'
         reporter: dotnet-trx
+        fail-on-error: false
         
     - name: Build artifacts
       run: |
@@ -149,7 +156,7 @@ jobs:
           --configuration Release \
           --no-build \
           --verbosity normal \
-          --logger trx \
+          --logger "trx;LogFileName=integration-test-results.trx" \
           --results-directory ./test-results
       
     - name: Publish integration test results
@@ -157,5 +164,6 @@ jobs:
       if: success() || failure()
       with:
         name: Integration Tests
-        path: './test-results/*.trx'
+        path: './test-results/integration-test-results.trx'
         reporter: dotnet-trx
+        fail-on-error: false

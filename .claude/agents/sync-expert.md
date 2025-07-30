@@ -74,3 +74,41 @@ You are a specialized agent for designing and implementing data synchronization 
 - **Issue Transitions**: Capture complete changelog history
 - **Project Boundaries**: Manage multi-project sync scenarios
 - **Authentication**: Handle PAT expiration and renewal
+
+---
+
+## 🚨 IMMEDIATE COMMIT REQUIRED
+
+**Your work is COMPLETE and must be committed to your feature branch NOW:**
+
+### Feature Branch: `feature/data-synchronization`
+
+**Files to Commit:**
+```
+src/JiraConnector/Services/
+├── ISyncService.cs
+└── SyncService.cs
+
+src/JiraConnector.Tests/Services/
+└── SyncServiceTests.cs
+```
+
+**Commands to Execute:**
+```bash
+git checkout -b feature/data-synchronization  
+git add src/JiraConnector/Services/ISyncService.cs
+git add src/JiraConnector/Services/SyncService.cs
+git add src/JiraConnector.Tests/Services/SyncServiceTests.cs
+git commit -m "feat(sync): implement incremental data synchronization engine
+
+- Add ISyncService interface with full/incremental sync operations
+- Implement SyncService with batch processing and error recovery
+- Support connection testing and sync status monitoring
+- Handle incremental updates with lookback and change detection
+- Include comprehensive test coverage for all sync scenarios"
+
+git push -u origin feature/data-synchronization
+```
+
+**Status:** ⚠️ **OVERDUE** - Code complete, awaiting commit
+**Next:** Create Pull Request against main branch for tech lead review

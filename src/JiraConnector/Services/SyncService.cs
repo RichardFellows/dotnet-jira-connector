@@ -32,7 +32,7 @@ public class SyncService : ISyncService
     public async Task<SyncResult> PerformFullSyncAsync(CancellationToken cancellationToken = default)
     {
         _logger.LogInformation("Starting full synchronization");
-        
+
         var result = new SyncResult
         {
             SyncType = SyncType.Full,
@@ -51,8 +51,8 @@ public class SyncService : ISyncService
             await _databaseService.InitializeDatabaseAsync(cancellationToken);
 
             // Determine which projects to sync
-            var projectKeys = _jiraConfig.ProjectKeys.Any() 
-                ? _jiraConfig.ProjectKeys 
+            var projectKeys = _jiraConfig.ProjectKeys.Any()
+                ? _jiraConfig.ProjectKeys
                 : new List<string>(); // Would need to fetch all accessible projects
 
             if (!projectKeys.Any())
@@ -73,7 +73,7 @@ public class SyncService : ISyncService
                     await _databaseService.UpsertIssuesAsync(batch, cancellationToken);
                     result.IssuesProcessed += batch.Length;
                     result.IssuesInserted += batch.Length; // Simplified - would need to track actual inserts vs updates
-                    
+
                     _logger.LogDebug("Processed batch of {Count} issues", batch.Length);
                 }
             }
@@ -130,8 +130,8 @@ public class SyncService : ISyncService
             _logger.LogInformation("Syncing changes since {LookbackTime}", lookbackTime);
 
             // Determine which projects to sync
-            var projectKeys = _jiraConfig.ProjectKeys.Any() 
-                ? _jiraConfig.ProjectKeys 
+            var projectKeys = _jiraConfig.ProjectKeys.Any()
+                ? _jiraConfig.ProjectKeys
                 : new List<string>();
 
             if (!projectKeys.Any())
@@ -144,8 +144,8 @@ public class SyncService : ISyncService
                 // Get issues updated since last sync
                 var updatedIssues = await _jiraClient.GetIssuesUpdatedSinceAsync(
                     lookbackTime, projectKeys, cancellationToken);
-                
-                _logger.LogInformation("Found {Count} issues updated since {LastSync}", 
+
+                _logger.LogInformation("Found {Count} issues updated since {LastSync}",
                     updatedIssues.Count, lookbackTime);
 
                 if (updatedIssues.Any())
@@ -157,7 +157,7 @@ public class SyncService : ISyncService
                         await _databaseService.UpsertIssuesAsync(batch, cancellationToken);
                         result.IssuesProcessed += batch.Length;
                         result.IssuesUpdated += batch.Length; // Simplified
-                        
+
                         _logger.LogDebug("Processed incremental batch of {Count} issues", batch.Length);
                     }
                 }
@@ -206,7 +206,7 @@ public class SyncService : ISyncService
             var dbHealth = await _databaseService.GetHealthStatusAsync(cancellationToken);
             if (!dbHealth.IsHealthy)
             {
-                _logger.LogError("Database health check failed: {Issues}", 
+                _logger.LogError("Database health check failed: {Issues}",
                     string.Join(", ", dbHealth.Issues));
                 return false;
             }

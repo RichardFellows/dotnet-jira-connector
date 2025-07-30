@@ -389,7 +389,7 @@ public class DuckDbService : IDatabaseService, IDisposable
     public async Task<List<IssueMetric>> GetIssueMetricsAsync(string? projectKey = null, CancellationToken cancellationToken = default)
     {
         var connection = await GetConnectionAsync();
-        var sql = projectKey != null 
+        var sql = projectKey != null
             ? "SELECT * FROM issue_metrics WHERE project_key = $1 ORDER BY updated_date DESC"
             : "SELECT * FROM issue_metrics ORDER BY updated_date DESC LIMIT 1000";
 

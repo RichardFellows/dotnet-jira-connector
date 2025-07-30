@@ -18,7 +18,7 @@ public class DuckDbServiceTests : IDisposable
     {
         _loggerMock = new Mock<ILogger<DuckDbService>>();
         _testDbPath = Path.Combine(Path.GetTempPath(), $"test_jira_{Guid.NewGuid()}.duckdb");
-        
+
         _config = new DatabaseConfiguration
         {
             FilePath = _testDbPath,
@@ -39,7 +39,7 @@ public class DuckDbServiceTests : IDisposable
 
         // Assert
         File.Exists(_testDbPath).Should().BeTrue();
-        
+
         // Verify some key tables exist
         var healthStatus = await _service.GetHealthStatusAsync();
         healthStatus.IsHealthy.Should().BeTrue();
@@ -50,7 +50,7 @@ public class DuckDbServiceTests : IDisposable
     {
         // Arrange
         await _service.InitializeDatabaseAsync();
-        
+
         var issue = CreateTestIssue("TEST-1", "Test Issue");
 
         // Act
@@ -68,7 +68,7 @@ public class DuckDbServiceTests : IDisposable
     {
         // Arrange
         await _service.InitializeDatabaseAsync();
-        
+
         var issues = new[]
         {
             CreateTestIssue("TEST-1", "First Issue"),
@@ -92,7 +92,7 @@ public class DuckDbServiceTests : IDisposable
     {
         // Arrange
         await _service.InitializeDatabaseAsync();
-        
+
         var originalIssue = CreateTestIssue("TEST-1", "Original Summary");
         await _service.UpsertIssuesAsync(new[] { originalIssue });
 
@@ -155,7 +155,7 @@ public class DuckDbServiceTests : IDisposable
     {
         // Arrange
         await _service.InitializeDatabaseAsync();
-        
+
         var issues = new[]
         {
             CreateTestIssue("PROJ1-1", "Issue 1", "PROJ1", "Project One"),
@@ -179,7 +179,7 @@ public class DuckDbServiceTests : IDisposable
     {
         // Arrange
         await _service.InitializeDatabaseAsync();
-        
+
         var issues = new[]
         {
             CreateTestIssue("PROJ1-1", "Issue 1", "PROJ1", "Project One"),
@@ -281,7 +281,7 @@ public class DuckDbServiceTests : IDisposable
     public void Dispose()
     {
         _service?.Dispose();
-        
+
         if (File.Exists(_testDbPath))
         {
             try

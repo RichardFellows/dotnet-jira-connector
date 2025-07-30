@@ -59,10 +59,10 @@ public class SyncServiceTests
 
         _jiraClientMock.Setup(x => x.TestConnectionAsync(It.IsAny<CancellationToken>()))
                       .ReturnsAsync(true);
-        
+
         _databaseServiceMock.Setup(x => x.GetHealthStatusAsync(It.IsAny<CancellationToken>()))
                            .ReturnsAsync(new DatabaseHealthStatus { IsHealthy = true });
-        
+
         _databaseServiceMock.Setup(x => x.InitializeDatabaseAsync(It.IsAny<CancellationToken>()))
                            .Returns(Task.CompletedTask);
 
@@ -187,7 +187,7 @@ public class SyncServiceTests
 
         // Assert
         result.SyncType.Should().Be(SyncType.Full);
-        
+
         // Verify it called the full sync method instead
         _jiraClientMock.Verify(x => x.GetAllIssuesAsync(
             It.IsAny<IEnumerable<string>>(),
@@ -219,8 +219,8 @@ public class SyncServiceTests
                       .ReturnsAsync(true);
 
         _databaseServiceMock.Setup(x => x.GetHealthStatusAsync(It.IsAny<CancellationToken>()))
-                           .ReturnsAsync(new DatabaseHealthStatus 
-                           { 
+                           .ReturnsAsync(new DatabaseHealthStatus
+                           {
                                IsHealthy = false,
                                Issues = new List<string> { "Database connection failed" }
                            });

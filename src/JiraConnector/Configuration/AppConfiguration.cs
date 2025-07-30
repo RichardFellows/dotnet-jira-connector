@@ -43,7 +43,7 @@ public class AppConfiguration
     public static AppConfiguration LoadAndValidate(IConfiguration configuration)
     {
         var appConfig = new AppConfiguration();
-        
+
         // Bind configuration sections
         configuration.GetSection(JiraConfiguration.SectionName).Bind(appConfig.Jira);
         configuration.GetSection(DatabaseConfiguration.SectionName).Bind(appConfig.Database);

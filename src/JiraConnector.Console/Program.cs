@@ -24,7 +24,7 @@ class Program
             System.Console.WriteLine("🚀 JIRA Connector Starting...");
 
             var host = CreateHostBuilder(args).Build();
-            
+
             using var scope = host.Services.CreateScope();
             var services = scope.ServiceProvider;
 
@@ -38,7 +38,7 @@ class Program
             // Test connections
             System.Console.WriteLine("\n🔍 Testing connections...");
             var connectionsOk = await syncService.TestConnectionsAsync();
-            
+
             if (!connectionsOk)
             {
                 System.Console.WriteLine("❌ Connection tests failed. Please check your configuration.");
@@ -52,8 +52,8 @@ class Program
 
             // Perform synchronization
             System.Console.WriteLine($"\n📥 Starting {(shouldPerformFullSync ? "full" : "incremental")} synchronization...");
-            
-            var result = shouldPerformFullSync 
+
+            var result = shouldPerformFullSync
                 ? await syncService.PerformFullSyncAsync()
                 : await syncService.PerformIncrementalSyncAsync();
 
@@ -127,7 +127,7 @@ class Program
         System.Console.WriteLine($"   Issues Processed: {result.IssuesProcessed:N0}");
         System.Console.WriteLine($"   Issues Inserted: {result.IssuesInserted:N0}");
         System.Console.WriteLine($"   Issues Updated: {result.IssuesUpdated:N0}");
-        
+
         if (result.Warnings.Any())
         {
             System.Console.WriteLine($"   Warnings: {result.Warnings.Count}");
@@ -170,7 +170,7 @@ class Program
 
                 var totalIssues = summaries.Sum(s => s.TotalIssues);
                 var totalResolved = summaries.Sum(s => s.ResolvedIssues);
-                System.Console.WriteLine($"\n📊 Overall: {totalIssues:N0} total issues, {totalResolved:N0} resolved ({(double)totalResolved/totalIssues*100:F1}%)");
+                System.Console.WriteLine($"\n📊 Overall: {totalIssues:N0} total issues, {totalResolved:N0} resolved ({(double)totalResolved / totalIssues * 100:F1}%)");
             }
         }
         catch (Exception ex)

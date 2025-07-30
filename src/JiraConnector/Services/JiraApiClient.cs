@@ -71,7 +71,7 @@ public class JiraApiClient : IJiraApiClient
             var searchResult = JsonSerializer.Deserialize<JiraSearchResult>(jsonContent, _jsonOptions)
                 ?? throw new InvalidOperationException("Failed to deserialize search result");
 
-            _logger.LogInformation("Retrieved {Count} issues out of {Total} total", 
+            _logger.LogInformation("Retrieved {Count} issues out of {Total} total",
                 searchResult.Issues.Count, searchResult.Total);
 
             return searchResult;
@@ -92,7 +92,7 @@ public class JiraApiClient : IJiraApiClient
         try
         {
             var response = await _httpClient.GetAsync(requestUri, cancellationToken);
-            
+
             if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
             {
                 _logger.LogWarning("Issue not found: {IssueKey}", issueKey);
@@ -179,7 +179,7 @@ public class JiraApiClient : IJiraApiClient
 
         } while (startAt < 10000); // JIRA limit
 
-        _logger.LogInformation("Retrieved {Count} total issues for projects: {Projects}", 
+        _logger.LogInformation("Retrieved {Count} total issues for projects: {Projects}",
             allIssues.Count, string.Join(", ", projectKeys));
         return allIssues;
     }

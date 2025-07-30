@@ -1,5 +1,9 @@
 # JIRA Connector - .NET 8.0
 
+![Build and Test](https://github.com/RichardFellows/dotnet-jira-connector/workflows/Build%20and%20Test/badge.svg)
+![.NET](https://img.shields.io/badge/.NET-8.0-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
+
 A robust .NET application for synchronizing JIRA issues with a local DuckDB database, optimized for analytics and reporting. Built using Test-Driven Development (TDD) methodology.
 
 ## 🚀 Features

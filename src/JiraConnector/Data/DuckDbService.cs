@@ -154,7 +154,8 @@ public class DuckDbService : IDatabaseService, IDisposable
                 labels = EXCLUDED.labels,
                 last_synced = EXCLUDED.last_synced";
 
-        using var command = new DuckDBCommand(sql, connection, transaction);
+        using var command = new DuckDBCommand(sql, connection);
+        command.Transaction = transaction;
         command.Parameters.Add(new DuckDBParameter("$1", issue.Id));
         command.Parameters.Add(new DuckDBParameter("$2", issue.Key));
         command.Parameters.Add(new DuckDBParameter("$3", issue.Fields.Project?.Id ?? string.Empty));
@@ -184,7 +185,8 @@ public class DuckDbService : IDatabaseService, IDisposable
                 project_name = EXCLUDED.project_name,
                 updated_date = EXCLUDED.updated_date";
 
-        using var command = new DuckDBCommand(sql, connection, transaction);
+        using var command = new DuckDBCommand(sql, connection);
+        command.Transaction = transaction;
         command.Parameters.Add(new DuckDBParameter("$1", project.Id));
         command.Parameters.Add(new DuckDBParameter("$2", project.Key));
         command.Parameters.Add(new DuckDBParameter("$3", project.Name));
@@ -202,7 +204,8 @@ public class DuckDbService : IDatabaseService, IDisposable
                 issue_type_name = EXCLUDED.issue_type_name,
                 icon_url = EXCLUDED.icon_url";
 
-        using var command = new DuckDBCommand(sql, connection, transaction);
+        using var command = new DuckDBCommand(sql, connection);
+        command.Transaction = transaction;
         command.Parameters.Add(new DuckDBParameter("$1", issueType.Id));
         command.Parameters.Add(new DuckDBParameter("$2", issueType.Name));
         command.Parameters.Add(new DuckDBParameter("$3", issueType.IconUrl));
@@ -222,7 +225,8 @@ public class DuckDbService : IDatabaseService, IDisposable
                     category_name = EXCLUDED.category_name,
                     category_key = EXCLUDED.category_key";
 
-            using var categoryCommand = new DuckDBCommand(categorySql, connection, transaction);
+            using var categoryCommand = new DuckDBCommand(categorySql, connection);
+            categoryCommand.Transaction = transaction;
             categoryCommand.Parameters.Add(new DuckDBParameter("$1", status.StatusCategory.Id));
             categoryCommand.Parameters.Add(new DuckDBParameter("$2", status.StatusCategory.Name));
             categoryCommand.Parameters.Add(new DuckDBParameter("$3", status.StatusCategory.Key));
@@ -237,7 +241,8 @@ public class DuckDbService : IDatabaseService, IDisposable
                 status_name = EXCLUDED.status_name,
                 status_category_id = EXCLUDED.status_category_id";
 
-        using var command = new DuckDBCommand(sql, connection, transaction);
+        using var command = new DuckDBCommand(sql, connection);
+        command.Transaction = transaction;
         command.Parameters.Add(new DuckDBParameter("$1", status.Id));
         command.Parameters.Add(new DuckDBParameter("$2", status.Name));
         command.Parameters.Add(new DuckDBParameter("$3", status.StatusCategory?.Id));
@@ -254,7 +259,8 @@ public class DuckDbService : IDatabaseService, IDisposable
                 priority_name = EXCLUDED.priority_name,
                 icon_url = EXCLUDED.icon_url";
 
-        using var command = new DuckDBCommand(sql, connection, transaction);
+        using var command = new DuckDBCommand(sql, connection);
+        command.Transaction = transaction;
         command.Parameters.Add(new DuckDBParameter("$1", priority.Id));
         command.Parameters.Add(new DuckDBParameter("$2", priority.Name));
         command.Parameters.Add(new DuckDBParameter("$3", priority.IconUrl));
@@ -273,7 +279,8 @@ public class DuckDbService : IDatabaseService, IDisposable
                 email_address = EXCLUDED.email_address,
                 updated_date = EXCLUDED.updated_date";
 
-        using var command = new DuckDBCommand(sql, connection, transaction);
+        using var command = new DuckDBCommand(sql, connection);
+        command.Transaction = transaction;
         command.Parameters.Add(new DuckDBParameter("$1", user.AccountId ?? user.Name ?? "unknown"));
         command.Parameters.Add(new DuckDBParameter("$2", user.Name));
         command.Parameters.Add(new DuckDBParameter("$3", user.DisplayName));
